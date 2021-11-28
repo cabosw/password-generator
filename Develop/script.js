@@ -45,30 +45,30 @@ function generateCriteria() {
     if (specialCharactersConfirm === true) {
     characterOptions.push(...specialCharacters);
     console.log(characterOptions);
-  
+  } 
   var criteria = {
       length: lengthConfirm,
       characterOptions: characterOptions
-
-  }  
-  console.log(criteria);
+}  
 
   return criteria;
 }
 
-}
-
 //creates random password based on criteria for length and characterOptions 
-function generatePassword(criteria) {
+function generatePassword() {
   var criteria = generateCriteria();
-  for (var i = 0; i < criteria.length; i++) {
+  let length = criteria.length;
+  let characterOptions = criteria.characterOptions;
+  
+  for (var i = 0; i < length; i++) {
     var random = Math.floor(Math.random()*characterOptions.length);
-    console.log(random);
     pass += characterOptions[random];
-    console.log(pass);
+  // var password = pass;
+  // var passwordText = document.querySelector("#password")
+  // console.log(password);
   }
+  return pass;
 }
-generatePassword();
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -77,11 +77,10 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", generateCriteria);
+generateBtn.addEventListener("click", writePassword);
 
