@@ -6,7 +6,7 @@
 //Criteria function start
 function generateCriteria() {
   do {
-    var lengthConfirm = window.prompt("Enter a number for password length. Minimum 8 characters/maximum 128 characters.");
+    var lengthConfirm = window.prompt("How long do you want your password to be? Length must be at least 8 and no more than 128");
   }
   while (lengthConfirm < 8 || lengthConfirm > 128 || lengthConfirm === null || isNaN(lengthConfirm));
 
@@ -19,7 +19,7 @@ function generateCriteria() {
   var characterOptions = [];
 
   //prompts for password character options
-  var upperCaseConfirm = window.confirm("Include capital letters?");
+  var upperCaseConfirm = window.confirm("Include capital letters? OK for yes or Cancel for no.");
     if (upperCaseConfirm === true) {
       characterOptions.push(...upperCaseLetters);
       console.log(characterOptions);
@@ -39,6 +39,7 @@ function generateCriteria() {
     characterOptions.push(...specialCharacters);
     console.log(characterOptions);
   } 
+  // add length and characterOptions variables to object, allows for both variables to be returned from the function
   var criteria = {
       length: lengthConfirm,
       characterOptions: characterOptions
