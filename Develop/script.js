@@ -40,9 +40,6 @@ function generateCriteria() {
     characterOptions.push(...specialCharacters);
     console.log(characterOptions);
     }
-    if (characterOptions === []); {
-      alert("A password cannot be generated without any characters. Please refresh your browser and try again.");
-    }
       var criteria = {
       length: lengthConfirm,
       characterOptions: characterOptions
