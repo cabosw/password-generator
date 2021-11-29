@@ -1,12 +1,8 @@
 
-
-
-
-
-//Criteria function start
+//Takes user input and returns length and characterOptions
 function generateCriteria() {
   do {
-    var lengthConfirm = window.prompt("How long do you want your password to be? Length must be at least 8 and no more than 128");
+    var lengthConfirm = window.prompt("Enter a length for your password within the range of 8-128");
   }
   while (lengthConfirm < 8 || lengthConfirm > 128 || lengthConfirm === null || isNaN(lengthConfirm));
 
@@ -19,50 +15,53 @@ function generateCriteria() {
   var characterOptions = [];
 
   //prompts for password character options
-  var upperCaseConfirm = window.confirm("Include capital letters? OK for yes or Cancel for no.");
+  //if statements add the respective character array into the characterOptions array based on user input
+  alert("The following prompts will decide what character types to include in your password. You will have the option to press OK to include the character type or cancel to skip it")
+  var upperCaseConfirm = window.confirm("Include upper case letters?");
     if (upperCaseConfirm === true) {
+      alert("Stellar choice. Upper case letters will be added to your password")
       characterOptions.push(...upperCaseLetters);
       console.log(characterOptions);
     }
   var lowerCaseConfirm = window.confirm("Include lower case letters?");
     if (lowerCaseConfirm === true) {
+      alert("Wonderful. Lower case letters will be added to your password")
       characterOptions.push(...lowerCaseLetters);
       console.log(characterOptions);
-  }
-  var numbersConfirm = window.confirm("Include numeric values?");
+    }
+  var numbersConfirm = window.confirm("Include number values?");
     if (numbersConfirm === true) {
+      alert("Fantastic. Numbers will be added to your password")
     characterOptions.push(...numbers);
     console.log(characterOptions);
-}
+    }
   var specialCharactersConfirm = window.confirm("Include special characters?");
     if (specialCharactersConfirm === true) {
+      alert("Marvelous. Special characters will be added to your password")
     characterOptions.push(...specialCharacters);
     console.log(characterOptions);
-  } 
-  // add length and characterOptions variables to object, allows for both variables to be returned from the function
-  var criteria = {
+    }
+
+    //criteria object allows for two variables to be returned from this function
+    var criteria = {
       length: lengthConfirm,
       characterOptions: characterOptions
-}  
-
+  }  
   return criteria;
 }
 
-//creates random password based on criteria for length and characterOptions 
+//creates random password based on criteria recieved from generateCriteria function
 function generatePassword() {
   var criteria = generateCriteria();
   let length = criteria.length;
   let characterOptions = criteria.characterOptions;
-  var pass = '';
+  var password = '';
   
   for (var i = 0; i < length; i++) {
     var random = Math.floor(Math.random()*characterOptions.length);
-    pass += characterOptions[random];
-  // var password = pass;
-  // var passwordText = document.querySelector("#password")
-  // console.log(password);
+    password += characterOptions[random];
   }
-  return pass;
+  return password;
 }
 
 // Get references to the #generate element
@@ -73,7 +72,6 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
