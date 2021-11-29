@@ -41,14 +41,15 @@ function generateCriteria() {
     characterOptions.push(...specialCharacters);
     console.log(characterOptions);
     }
-
-    //criteria object allows for two variables to be returned from this function
-    var criteria = {
+    if (characterOptions === []); {
+      alert("A password cannot be generated without any characters. Please refresh your browser and try again.");
+    }
+      var criteria = {
       length: lengthConfirm,
       characterOptions: characterOptions
-  }  
-  return criteria;
-}
+      } 
+    return criteria;
+  }
 
 //creates random password based on criteria recieved from generateCriteria function
 function generatePassword() {
